@@ -1,26 +1,32 @@
 package org.formacion.state;
 
 public class Microwave {
+	
+//	A more general implementation would use an object with a reference to the microwave for each state
 
 	private State state = State.OFF;
-	
-	private enum State {
-		OFF, OPEN_DOOR, MAX_POWER, MIN_POWER, WORKING
-	}
-	
-//	Inverse way, 
-//	I offer a function and I have to look for each of the states how I have to react 
-	
+
 	public void setMinPower() {
-		switch (state) {
-		case OFF:
-		case MAX_POWER:
-			state = State.MIN_POWER;
-			System.out.println("min power");
-			break;
-		default:
-			System.out.println("not working from " + state);
-		}
+		state = state.setMinPower();
 	}
 	
+	public void setMaxPower() {
+		state = state.setMaxPower();
+	}
+	
+	public void cooking() {
+		state = state.cooking();
+	}
+	
+	public void openDoor() {
+		state = state.openDoor();
+	}
+	
+	public void off() {
+		state = state.off();
+	}
+	
+	public void on() {
+		state = state.on();
+	}
 }
